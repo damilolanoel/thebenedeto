@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Benedetto | VA Operations Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --charcoal: #1A1A1A;
+            --soft-white: #FDFDFD;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: var(--charcoal);
+        }
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+        }
+        .gold-border { border-color: var(--gold); }
+        .gold-text { color: var(--gold); }
+        .bg-charcoal { background-color: var(--charcoal); }
+        .bg-gold { background-color: var(--gold); }
+        
+        .editable-active {
+            outline: 2px dashed var(--gold);
+            background-color: #fffef0;
+            padding: 4px;
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { background-color: white; }
+            .tab-content { display: block !important; }
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="pb-20">
+
+    <!-- Header -->
+    <header class="bg-charcoal text-white py-8 px-6 shadow-xl border-b-4 gold-border">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl tracking-widest uppercase">The Benedetto</h1>
+                <p class="text-sm gold-text tracking-widest mt-1">Virtual Assistant Operations Dashboard</p>
+            </div>
+            <div class="no-print space-x-4">
+                <button onclick="toggleEditMode()" id="editBtn" class="bg-gold text-charcoal px-4 py-2 rounded font-semibold text-sm hover:bg-yellow-600 transition">
+                    Enable Edit Mode
+                </button>
+                <button onclick="window.print()" class="bg-white text-charcoal px-4 py-2 rounded font-semibold text-sm hover:bg-gray-200 transition">
+                    Save as PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 no-print">
+        <div class="max-w-6xl mx-auto flex flex-wrap border-b">
+            <button onclick="showTab('overview')" class="tab-btn px-6 py-4 font-semibold border-b-2 border-transparent hover:text-gold active-tab" id="defaultTab">Overview</button>
+            <button onclick="showTab('daily')" class="tab-btn px-6 py-4 font-semibold border-b-2 border-transparent hover:text-gold">Daily Schedule</button>
+            <button onclick="showTab('scripts')" class="tab-btn px-6 py-4 font-semibold border-b-2 border-transparent hover:text-gold">Response Scripts</button>
+            <button onclick="showTab('escalation')" class="tab-btn px-6 py-4 font-semibold border-b-2 border-transparent hover:text-gold">Escalation</button>
+            <button onclick="showTab('kpis')" class="tab-btn px-6 py-4 font-semibold border-b-2 border-transparent hover:text-gold">KPIs</button>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto mt-8 px-6">
+
+        <!-- Section: Overview -->
+        <section id="overview" class="tab-content active space-y-6">
+            <div class="bg-white p-8 rounded-lg shadow-sm border-l-8 gold-border">
+                <h2 class="text-2xl mb-4">Mission Statement</h2>
+                <div class="editable" id="mission-text">
+                    To ensure every lead, client, and vendor interaction is handled professionally, promptly, and with warmth. You are the first point of contact for The Benedetto brand.
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="gold-text font-bold uppercase mb-3">Response Standards</h3>
+                    <ul class="space-y-2 text-sm editable">
+                        <li><strong>DMs:</strong> 15 Minutes (Business Hours)</li>
+                        <li><strong>Leads:</strong> 30 Minutes (Business Hours)</li>
+                        <li><strong>Email:</strong> 1 Hour (Business Hours)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="gold-text font-bold uppercase mb-3">Core Tools</h3>
+                    <p class="text-sm editable">HoneyBook (CRM), Later (Social), Google Business Suite, Meta Business Suite.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Daily Workflow -->
+        <section id="daily" class="tab-content space-y-6">
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+                <h2 class="text-2xl mb-6 border-b pb-2">Morning Routine (9:00 AM - 10:00 AM)</h2>
+                <div class="space-y-4 editable">
+                    <p><strong>9:00 AM:</strong> Inbox Sweep - Respond to all overnight inquiries across Email, IG, FB, and Google.</p>
+                    <p><strong>9:30 AM:</strong> Lead Log Update - Ensure every inquiry is in the CRM/Lead Tracker.</p>
+                    <p><strong>9:45 AM:</strong> Calendar Check - Send tour reminders for today's appointments.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+                <h2 class="text-2xl mb-6 border-b pb-2">Afternoon Focus</h2>
+                <div class="space-y-4 editable">
+                    <p><strong>1:00 PM:</strong> Pipeline Management - Follow up with "Warm" leads who haven't booked tours yet.</p>
+                    <p><strong>3:00 PM:</strong> Social Media Block - Engage with comments, post stories, and welcome new followers.</p>
+                    <p><strong>5:30 PM:</strong> Wrap-up - Submit the Daily End-of-Day Report.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Scripts -->
+        <section id="scripts" class="tab-content space-y-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 gold-border">
+                <h3 class="font-bold text-lg mb-2">Initial Inquiry Response (DM)</h3>
+                <div class="bg-gray-50 p-4 rounded border italic editable">
+                    "Hi [Name]! 👋 Thank you for reaching out to The Benedetto Event Center! We'd love to help make your event unforgettable. ✨ Could you share your event date and estimated guest count? I'll send over our package info right away! 💛"
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 gold-border">
+                <h3 class="font-bold text-lg mb-2">Review Request (Post-Event)</h3>
+                <div class="bg-gray-50 p-4 rounded border italic editable">
+                    "Hi [Name]! 🎉 We hope you're still smiling from your amazing event at The Benedetto! We'd be so grateful if you could take 60 seconds to leave us a Google review: [Link]. Thank you so much! 💛"
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Escalation -->
+        <section id="escalation" class="tab-content space-y-6">
+            <div class="bg-red-50 p-8 rounded-lg border border-red-200">
+                <h2 class="text-2xl text-red-700 mb-4 font-bold uppercase">Emergency Escalation Protocol</h2>
+                <ul class="list-disc ml-6 space-y-2 text-red-800 editable">
+                    <li>Threat of legal action or formal complaint.</li>
+                    <li>Negative reviews with serious allegations.</li>
+                    <li>Disputes regarding pricing or contracts.</li>
+                    <li>Media or Press inquiries.</li>
+                </ul>
+                <p class="mt-6 font-bold text-red-700 uppercase">Action: Text Marketing Director Immediately. Do not respond to client until instructed.</p>
+            </div>
+        </section>
+
+        <!-- Section: KPIs -->
+        <section id="kpis" class="tab-content">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-charcoal text-white p-8 rounded-lg text-center">
+                    <h4 class="text-sm gold-text uppercase tracking-widest mb-2">Response Time</h4>
+                    <div class="text-4xl font-bold editable">&lt;30m</div>
+                </div>
+                <div class="bg-charcoal text-white p-8 rounded-lg text-center">
+                    <h4 class="text-sm gold-text uppercase tracking-widest mb-2">Lead-to-Tour</h4>
+                    <div class="text-4xl font-bold editable">40%+</div>
+                </div>
+                <div class="bg-charcoal text-white p-8 rounded-lg text-center">
+                    <h4 class="text-sm gold-text uppercase tracking-widest mb-2">Google Reviews</h4>
+                    <div class="text-4xl font-bold editable">12/mo</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 no-print text-center text-gray-400 text-xs pb-10 uppercase tracking-widest">
+        &copy; 2026 The Benedetto Event Center | Internal Operations Only
+    </footer>
+
+    <script>
+        // Tab Management
+        function showTab(tabId) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Remove active style from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-gold', 'text-gold');
+                btn.style.borderBottomColor = 'transparent';
+            });
+            
+            // Show target content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Set active button style
+            const activeBtn = event ? event.currentTarget : document.getElementById('defaultTab');
+            activeBtn.classList.add('text-gold');
+            activeBtn.style.borderBottomColor = '#D4AF37';
+        }
+
+        // Edit Mode Toggle
+        let isEditMode = false;
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const editables = document.querySelectorAll('.editable');
+            const btn = document.getElementById('editBtn');
+
+            editables.forEach(el => {
+                if (isEditMode) {
+                    el.setAttribute('contenteditable', 'true');
+                    el.classList.add('editable-active');
+                    btn.innerText = "Disable Edit Mode (Save View)";
+                    btn.classList.replace('bg-gold', 'bg-green-500');
+                } else {
+                    el.setAttribute('contenteditable', 'false');
+                    el.classList.remove('editable-active');
+                    btn.innerText = "Enable Edit Mode";
+                    btn.classList.replace('bg-green-500', 'bg-gold');
+                    // In a real app, you would trigger an API save here.
+                    console.log('Content saved locally to browser session');
+                }
+            });
+        }
+        
+        // Initialize
+        document.getElementById('defaultTab').click();
+    </script>
+</body>
+</html>
